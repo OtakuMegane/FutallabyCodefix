@@ -5,9 +5,12 @@
 # http://www.1chan.net/futallaby/
 #
 # Based on GazouBBS and Futaba
+#
+# Codefix by OtakuMegane
+# https://github.com/OtakuMegane
 
-//Codefix note:
-// The structure of the script and files creates a lot of undefined notices (but it works fine)
+// Codefix note:
+// The structure of the script and files creates a lot of undefined notices but it works fine so we mute them
 error_reporting(E_ALL & ~E_NOTICE);
 
 include "config.php";

@@ -32,7 +32,7 @@ define('S_PREV', '�O�̃y�[�W');
 define('S_FIRSTPG', '�ŏ��̃y�[�W');
 define('S_NEXT', '���̃y�[�W');
 define('S_LASTPG', '�Ō�̃y�[�W');
-define('S_FOOT', '- <a href="http://php.s3.to" target=_blank>GazouBBS</a> + <a href="http://www.2chan.net/" target=_blank>futaba</a> + <a href="http://www.mapored.com/futallaby/" target=_blank>futallaby</a> -');
+define('S_FOOT', '- <a href="http://php.s3.to" target=_blank>GazouBBS</a> + <a href="http://www.2chan.net/" target=_blank>futaba</a> + <a href="http://www.mapored.com/futallaby/" target=_blank>futallaby</a> + <a href="https://github.com/OtakuMegane/FutallabyCodefix" target="_blank">Codefix</a> -');
 define('S_RELOAD', '�����[�h');
 define('S_UPFAIL', '�A�b�v���[�h�Ɏ��s���܂���<br>�T�[�o���T�|�[�g���Ă��Ȃ��\��������܂�');
 define('S_NOREC', '�A�b�v���[�h�Ɏ��s���܂���<br>�摜�t�@�C���ȊO�͎󂯕t���܂���');
