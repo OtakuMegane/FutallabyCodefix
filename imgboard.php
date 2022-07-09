@@ -5,6 +5,11 @@
 # http://www.1chan.net/futallaby/
 #
 # Based on GazouBBS and Futaba
+
+//Codefix note:
+// The structure of the script and files creates a lot of undefined notices (but it works fine)
+error_reporting(E_ALL & ~E_NOTICE);
+
 include "config.php";
 include "strings_e.php"; // String resource file
 
@@ -300,7 +305,7 @@ function mysql_call($query)
     if (!$ret) {
         # echo "error!!<br />";
         echo $query . "<br />";
-        //echo mysqli_errno($mysqli_object).": ".mysqli_error($mysqli_object)."<br />";die();
+        //echo mysqli_errno($mysqli_object).": ".mysqli_error($mysqli_object)."<br />";
         # echo mysql_errno().": ".mysql_error()."<br />";
     }
     return $ret;
@@ -950,12 +955,21 @@ function usrdel($no, $pwd)
     $delno = array();
     $delflag = FALSE;
     reset($_POST);
-    while ($item = each($_POST)) {
+
+    // Codefix note:
+    // each() is deprecated/removed and doesn't seem to be used for anything foreach can't handle
+    foreach($_POST as $key => $value) {
+        if ($value == 'delete') {
+            array_push($delno, $key);
+            $delflag = TRUE;
+        }
+    }
+    /*while ($item = each($_POST)) {
         if ($item[1] == 'delete') {
             array_push($delno, $item[0]);
             $delflag = TRUE;
         }
-    }
+    }*/
     if ($pwd == "" && $pwdc != "")
         $pwd = $pwdc;
         $countdel = count($delno);
@@ -1021,14 +1035,13 @@ function admindel($pass)
     reset($_POST);
 
     // Codefix note:
-    // each() is deprecated/removed and doesn't seem to be used for anything foreach can't handle
+    // Srsly what was the advantage to using each here??
     foreach($_POST as $key => $value) {
         if ($value == 'delete') {
             array_push($delno, $key);
             $delflag = TRUE;
         }
     }
-
     /*while ($item = each($_POST)) {
         if ($item[1] == 'delete') {
             array_push($delno, $item[0]);
@@ -1043,7 +1056,7 @@ function admindel($pass)
         while ($row = mysqli_fetch_row($result)) {
             list ($no, $now, $name, $email, $sub, $com, $host, $pwd, $ext, $w, $h, $tim, $time, $md5, $fsize,) = $row;
             if ($onlyimgdel == 'on') {
-                if (array_search($no, $delno)) { // only a picture is deleted
+                if (array_search($no, $delno) !== FALSE) { // only a picture is deleted
                     $delfile = $path . $tim . $ext; // only a picture is deleted
                     if (is_file($delfile))
                         unlink($delfile); // delete
@@ -1051,7 +1064,7 @@ function admindel($pass)
                             unlink(THUMB_DIR . $tim . 's.jpg'); // delete
                 }
             } else {
-                if (array_search($no, $delno)) { // It is empty when deleting
+                if (array_search($no, $delno) !== FALSE) { // It is empty when deleting
                     $find = TRUE;
                     if (!mysql_call("delete from " . SQLLOG . " where no=" . $no)) {
                         echo S_SQLFAIL;
