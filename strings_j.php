@@ -1,98 +1,98 @@
-<?
+<?php
 
-define(S_HOME, 'ƒz[ƒ€');
-define(S_ADMIN, 'ŠÇ——p');
-define(S_RETURN, 'ŒfŽ¦”Â‚É–ß‚é');
-define(S_POSTING, 'ƒŒƒX‘—Mƒ‚[ƒh');
-define(S_NOTAGS, 'ƒ^ƒO‚ª‚Â‚©‚¦‚Ü‚·');
-define(S_NAME, '‚¨‚È‚Ü‚¦');
-define(S_EMAIL, 'E-mail');
-define(S_SUBJECT, '‘è@@–¼');
-define(S_SUBMIT, '‘—M‚·‚é');
-define(S_COMMENT, 'ƒRƒƒ“ƒg');
-define(S_UPLOADFILE, '“Y•tFile');
-define(S_NOFILE, '‰æ‘œ‚È‚µ');
-define(S_DELPASS, 'íœƒL[');
-define(S_DELEXPL, '(‹LŽ–‚Ìíœ—pB‰p”Žš‚Å8•¶ŽšˆÈ“à)');
-define(S_RULES, '<LI>“Y•t‰Â”\ƒtƒ@ƒCƒ‹FGIF, JPG, PNG ƒuƒ‰ƒEƒU‚É‚æ‚Á‚Ä‚Í³í‚É“Y•t‚Å‚«‚È‚¢‚±‚Æ‚ª‚ ‚è‚Ü‚·B
-<LI>Å‘å“Šeƒf[ƒ^—Ê‚Í '.MAX_KB.' KB ‚Ü‚Å‚Å‚·Bsage‹@”\•t‚«B
-<LI>‰æ‘œ‚Í‰¡ '.MAX_W.'ƒsƒNƒZƒ‹Ac '.MAX_H.'ƒsƒNƒZƒ‹‚ð’´‚¦‚é‚Æk¬•\Ž¦‚³‚ê‚Ü‚·B');
-define(S_REPORTERR, 'ŠY“–‹LŽ–‚ª‚Ý‚Â‚©‚è‚Ü‚¹‚ñ');
-define(S_THUMB, 'ƒTƒ€ƒlƒCƒ‹‚ð•\Ž¦‚µ‚Ä‚¢‚Ü‚·.ƒNƒŠƒbƒN‚·‚é‚ÆŒ³‚ÌƒTƒCƒY‚ð•\Ž¦‚µ‚Ü‚·.');
-define(S_PICNAME, '‰æ‘œƒ^ƒCƒgƒ‹F');
-define(S_REPLY, '•ÔM');
-define(S_OLD, '‚±‚ÌƒXƒŒ‚ÍŒÃ‚¢‚Ì‚ÅA‚à‚¤‚·‚®Á‚¦‚Ü‚·B');
-define(S_RESU, 'ƒŒƒX');
-define(S_ABBR, 'ŒÈ—ªB‘S‚Ä“Ç‚Þ‚É‚Í•ÔMƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢B');
-define(S_REPDEL, 'y‹LŽ–íœz');
-define(S_DELPICONLY, '‰æ‘œ‚¾‚¯Á‚·');
-define(S_DELKEY, 'íœƒL[');
-define(S_DELETE, 'íœ');
-define(S_PREV, '‘O‚Ìƒy[ƒW');
-define(S_FIRSTPG, 'Å‰‚Ìƒy[ƒW');
-define(S_NEXT, 'ŽŸ‚Ìƒy[ƒW');
-define(S_LASTPG, 'ÅŒã‚Ìƒy[ƒW');
-define(S_FOOT, '- <a href="http://php.s3.to" target=_blank>GazouBBS</a> + <a href="http://www.2chan.net/" target=_blank>futaba</a> + <a href="http://www.mapored.com/futallaby/" target=_blank>futallaby</a> -'); 
-define(S_RELOAD, 'ƒŠƒ[ƒh');
-define(S_UPFAIL, 'ƒAƒbƒvƒ[ƒh‚ÉŽ¸”s‚µ‚Ü‚µ‚½<br>ƒT[ƒo‚ªƒTƒ|[ƒg‚µ‚Ä‚¢‚È‚¢‰Â”\«‚ª‚ ‚è‚Ü‚·');
-define(S_NOREC, 'ƒAƒbƒvƒ[ƒh‚ÉŽ¸”s‚µ‚Ü‚µ‚½<br>‰æ‘œƒtƒ@ƒCƒ‹ˆÈŠO‚ÍŽó‚¯•t‚¯‚Ü‚¹‚ñ');
-define(S_SAMEPIC, 'ƒAƒbƒvƒ[ƒh‚ÉŽ¸”s‚µ‚Ü‚µ‚½<br>“¯‚¶‰æ‘œ‚ª‚ ‚è‚Ü‚µ‚½');
-define(S_TOOBIG, 'ƒAƒbƒvƒ[ƒh‚ÉŽ¸”s‚µ‚Ü‚µ‚½<br>ƒTƒCƒY‚ª‘å‚«‚·‚¬‚Ü‚·<br>'.MAX_KB.'KƒoƒCƒg‚Ü‚Å');
-define(S_TOOBIGORNONE,'ƒAƒbƒvƒ[ƒh‚ÉŽ¸”s‚µ‚Ü‚µ‚½<br>‰æ‘œƒTƒCƒY‚ª‘å‚«‚·‚¬‚é‚©A<br>‚Ü‚½‚Í‰æ‘œ‚ª‚ ‚è‚Ü‚¹‚ñB');
-define(S_UPGOOD, '‰æ‘œ $upfile_name ‚ÌƒAƒbƒvƒ[ƒh‚ª¬Œ÷‚µ‚Ü‚µ‚½<br><br>');
-define(S_STRREF, '‹‘â‚³‚ê‚Ü‚µ‚½(str)');
-define(S_UNJUST, '•s³‚È“Še‚ð‚µ‚È‚¢‚Å‰º‚³‚¢(post)');
-define(S_NOPIC, '‰æ‘œ‚ª‚ ‚è‚Ü‚¹‚ñ');
-define(S_NOTEXT, '‰½‚©‘‚¢‚Ä‰º‚³‚¢');
-define(S_MANAGEMENT, 'íœ');
-define(S_DELETION, 'íœ');
-define(S_TOOLONG, '–{•¶‚ª’·‚·‚¬‚Ü‚·‚ÁI');
-define(S_UNUSUAL, 'ˆÙí‚Å‚·');
-define(S_BADHOST, '‹‘â‚³‚ê‚Ü‚µ‚½(host)');
-define(S_PROXY80, '‚d‚q‚q‚n‚qI@ŒöŠJ‚o‚q‚n‚w‚x‹K§’†II(80)');
-define(S_PROXY8080, '‚d‚q‚q‚n‚qI@ŒöŠJ‚o‚q‚n‚w‚x‹K§’†II(8080)');
-define(S_SUN, '“ú');
-define(S_MON, 'ŒŽ');
-define(S_TUE, '‰Î');
-define(S_WED, '…');
-define(S_THU, '–Ø');
-define(S_FRI, '‹à');
-define(S_SAT, '“y');
-define(S_ANONAME, '–¼–³‚µ');
-define(S_ANOTEXT, '–{•¶‚È‚µ');
-define(S_ANOTITLE, '–³‘è');
-define(S_RENZOKU, '˜A‘±“Še‚Í‚à‚¤‚µ‚Î‚ç‚­ŽžŠÔ‚ð’u‚¢‚Ä‚©‚ç‚¨Šè‚¢’v‚µ‚Ü‚·');
-define(S_RENZOKU2, '‰æ‘œ˜A‘±“Še‚Í‚à‚¤‚µ‚Î‚ç‚­ŽžŠÔ‚ð’u‚¢‚Ä‚©‚ç‚¨Šè‚¢’v‚µ‚Ü‚·');
-define(S_RENZOKU3, '˜A‘±“Še‚Í‚à‚¤‚µ‚Î‚ç‚­ŽžŠÔ‚ð’u‚¢‚Ä‚©‚ç‚¨Šè‚¢’v‚µ‚Ü‚·');
-define(S_DUPE, 'ƒAƒbƒvƒ[ƒh‚ÉŽ¸”s‚µ‚Ü‚µ‚½<br>“¯‚¶‰æ‘œ‚ª‚ ‚è‚Ü‚·');
-define(S_NOTHREADERR, 'ƒXƒŒƒbƒh‚ª‚ ‚è‚Ü‚¹‚ñ');
-define(S_SCRCHANGE, '‰æ–Ê‚ðØ‚è‘Ö‚¦‚Ü‚·');
-define(S_BADDELPASS, 'ŠY“–‹LŽ–‚ªŒ©‚Â‚©‚ç‚È‚¢‚©ƒpƒXƒ[ƒh‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·');
-define(S_WRONGPASS, 'ƒpƒXƒ[ƒh‚ªˆá‚¢‚Ü‚·');
-define(S_RETURNS, 'ŒfŽ¦”Â‚É–ß‚é');
-define(S_LOGUPD, 'ƒƒO‚ðXV‚·‚é');
-define(S_MANAMODE, 'ŠÇ—ƒ‚[ƒh');
-define(S_MANAREPDEL, '‹LŽ–íœ');
-define(S_MANAPOST, 'ŠÇ—l“Še');
-define(S_MANASUB, ' ”FØ');
-define(S_DELLIST, 'íœ‚µ‚½‚¢‹LŽ–‚Ìƒ`ƒFƒbƒNƒ{ƒbƒNƒX‚Éƒ`ƒFƒbƒN‚ð“ü‚êAíœƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ä‰º‚³‚¢B');
-define(S_ITDELETES, 'íœ‚·‚é');
-define(S_MDRESET, 'ƒŠƒZƒbƒg');
-define(S_MDONLYPIC, '‰æ‘œ‚¾‚¯Á‚·');
-define(S_MDTABLE1, '<th>íœ</th><th>‹LŽ–No</th><th>“Še“ú</th><th>‘è–¼</th>');
-define(S_MDTABLE2, '<th>“ŠeŽÒ</th><th>ƒRƒƒ“ƒg</th><th>ƒzƒXƒg–¼</th><th>“Y•t<br>(Bytes)</th><th>md5</th>');
-define(S_RESET, 'ƒŠƒZƒbƒg');
-define(S_IMGSPACEUSAGE, 'y ‰æ‘œƒf[ƒ^‡Œv : <b>$all</b> KB z');
-define(S_CANNOTWRITE, 'ƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚É‘‚¯‚Ü‚¹‚ñ<br>');
-define(S_NOTWRITE, '‚ð‘‚¯‚Ü‚¹‚ñ<br>');
-define(S_NOTREAD, '‚ð“Ç‚ß‚Ü‚¹‚ñ<br>');
-define(S_NOTDIR, '‚ª‚ ‚è‚Ü‚¹‚ñ<br>');
+define('S_HOME', 'ï¿½zï¿½[ï¿½ï¿½');
+define('S_ADMIN', 'ï¿½Ç—ï¿½ï¿½p');
+define('S_RETURN', 'ï¿½fï¿½ï¿½ï¿½Â‚É–ß‚ï¿½');
+define('S_POSTING', 'ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½[ï¿½h');
+define('S_NOTAGS', 'ï¿½^ï¿½Oï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½');
+define('S_NAME', 'ï¿½ï¿½ï¿½È‚Ü‚ï¿½');
+define('S_EMAIL', 'E-mail');
+define('S_SUBJECT', 'ï¿½ï¿½@ï¿½@ï¿½ï¿½');
+define('S_SUBMIT', 'ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ï¿½');
+define('S_COMMENT', 'ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½g');
+define('S_UPLOADFILE', 'ï¿½Yï¿½tFile');
+define('S_NOFILE', 'ï¿½æ‘œï¿½È‚ï¿½');
+define('S_DELPASS', 'ï¿½íœï¿½Lï¿½[');
+define('S_DELEXPL', '(ï¿½Lï¿½ï¿½ï¿½Ìíœï¿½pï¿½Bï¿½pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½8ï¿½ï¿½ï¿½ï¿½ï¿½È“ï¿½)');
+define('S_RULES', '<LI>ï¿½Yï¿½tï¿½Â”\ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½FGIF, JPG, PNG ï¿½uï¿½ï¿½ï¿½Eï¿½Uï¿½É‚ï¿½ï¿½ï¿½Ä‚Íï¿½ï¿½ï¿½É“Yï¿½tï¿½Å‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+<LI>ï¿½Å‘å“Šï¿½eï¿½fï¿½[ï¿½^ï¿½Ê‚ï¿½ '.MAX_KB.' KB ï¿½Ü‚Å‚Å‚ï¿½ï¿½Bsageï¿½@ï¿½\ï¿½tï¿½ï¿½ï¿½B
+<LI>ï¿½æ‘œï¿½Í‰ï¿½ '.MAX_W.'ï¿½sï¿½Nï¿½Zï¿½ï¿½ï¿½Aï¿½c '.MAX_H.'ï¿½sï¿½Nï¿½Zï¿½ï¿½ï¿½ð’´‚ï¿½ï¿½ï¿½Ækï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B');
+define('S_REPORTERR', 'ï¿½Yï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Ý‚Â‚ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½');
+define('S_THUMB', 'ï¿½Tï¿½ï¿½ï¿½lï¿½Cï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½.ï¿½Nï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½ï¿½ï¿½ÆŒï¿½ï¿½ÌƒTï¿½Cï¿½Yï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½.');
+define('S_PICNAME', 'ï¿½æ‘œï¿½^ï¿½Cï¿½gï¿½ï¿½ï¿½F');
+define('S_REPLY', 'ï¿½ÔM');
+define('S_OLD', 'ï¿½ï¿½ï¿½ÌƒXï¿½ï¿½ï¿½ÍŒÃ‚ï¿½ï¿½Ì‚ÅAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B');
+define('S_RESU', 'ï¿½ï¿½ï¿½X');
+define('S_ABBR', 'ï¿½ï¿½ï¿½È—ï¿½ï¿½Bï¿½Sï¿½Ä“Ç‚Þ‚É‚Í•ÔMï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B');
+define('S_REPDEL', 'ï¿½yï¿½Lï¿½ï¿½ï¿½íœï¿½z');
+define('S_DELPICONLY', 'ï¿½æ‘œï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
+define('S_DELKEY', 'ï¿½íœï¿½Lï¿½[');
+define('S_DELETE', 'ï¿½íœ');
+define('S_PREV', 'ï¿½Oï¿½Ìƒyï¿½[ï¿½W');
+define('S_FIRSTPG', 'ï¿½Åï¿½ï¿½Ìƒyï¿½[ï¿½W');
+define('S_NEXT', 'ï¿½ï¿½ï¿½Ìƒyï¿½[ï¿½W');
+define('S_LASTPG', 'ï¿½ÅŒï¿½Ìƒyï¿½[ï¿½W');
+define('S_FOOT', '- <a href="http://php.s3.to" target=_blank>GazouBBS</a> + <a href="http://www.2chan.net/" target=_blank>futaba</a> + <a href="http://www.mapored.com/futallaby/" target=_blank>futallaby</a> -');
+define('S_RELOAD', 'ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½h');
+define('S_UPFAIL', 'ï¿½Aï¿½bï¿½vï¿½ï¿½ï¿½[ï¿½hï¿½ÉŽï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½<br>ï¿½Tï¿½[ï¿½oï¿½ï¿½ï¿½Tï¿½|ï¿½[ï¿½gï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½Â”\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½');
+define('S_NOREC', 'ï¿½Aï¿½bï¿½vï¿½ï¿½ï¿½[ï¿½hï¿½ÉŽï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½<br>ï¿½æ‘œï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ÈŠOï¿½ÍŽó‚¯•tï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½');
+define('S_SAMEPIC', 'ï¿½Aï¿½bï¿½vï¿½ï¿½ï¿½[ï¿½hï¿½ÉŽï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½<br>ï¿½ï¿½ï¿½ï¿½ï¿½æ‘œï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½');
+define('S_TOOBIG', 'ï¿½Aï¿½bï¿½vï¿½ï¿½ï¿½[ï¿½hï¿½ÉŽï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½<br>ï¿½Tï¿½Cï¿½Yï¿½ï¿½ï¿½å‚«ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½<br>'.MAX_KB.'Kï¿½oï¿½Cï¿½gï¿½Ü‚ï¿½');
+define('S_TOOBIGORNONE','ï¿½Aï¿½bï¿½vï¿½ï¿½ï¿½[ï¿½hï¿½ÉŽï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½<br>ï¿½æ‘œï¿½Tï¿½Cï¿½Yï¿½ï¿½ï¿½å‚«ï¿½ï¿½ï¿½ï¿½ï¿½é‚©ï¿½A<br>ï¿½Ü‚ï¿½ï¿½Í‰æ‘œï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B');
+define('S_UPGOOD', 'ï¿½æ‘œ $upfile_name ï¿½ÌƒAï¿½bï¿½vï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½<br><br>');
+define('S_STRREF', 'ï¿½ï¿½ï¿½â‚³ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½(str)');
+define('S_UNJUST', 'ï¿½sï¿½ï¿½ï¿½È“ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½Å‰ï¿½ï¿½ï¿½ï¿½ï¿½(post)');
+define('S_NOPIC', 'ï¿½æ‘œï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½');
+define('S_NOTEXT', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‰ï¿½ï¿½ï¿½ï¿½ï¿½');
+define('S_MANAGEMENT', 'ï¿½íœ');
+define('S_DELETION', 'ï¿½íœ');
+define('S_TOOLONG', 'ï¿½{ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½I');
+define('S_UNUSUAL', 'ï¿½Ùï¿½Å‚ï¿½');
+define('S_BADHOST', 'ï¿½ï¿½ï¿½â‚³ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½(host)');
+define('S_PROXY80', 'ï¿½dï¿½qï¿½qï¿½nï¿½qï¿½Iï¿½@ï¿½ï¿½ï¿½Jï¿½oï¿½qï¿½nï¿½wï¿½xï¿½Kï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½I(80)');
+define('S_PROXY8080', 'ï¿½dï¿½qï¿½qï¿½nï¿½qï¿½Iï¿½@ï¿½ï¿½ï¿½Jï¿½oï¿½qï¿½nï¿½wï¿½xï¿½Kï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½I(8080)');
+define('S_SUN', 'ï¿½ï¿½');
+define('S_MON', 'ï¿½ï¿½');
+define('S_TUE', 'ï¿½ï¿½');
+define('S_WED', 'ï¿½ï¿½');
+define('S_THU', 'ï¿½ï¿½');
+define('S_FRI', 'ï¿½ï¿½');
+define('S_SAT', 'ï¿½y');
+define('S_ANONAME', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
+define('S_ANOTEXT', 'ï¿½{ï¿½ï¿½ï¿½È‚ï¿½');
+define('S_ANOTITLE', 'ï¿½ï¿½ï¿½ï¿½');
+define('S_RENZOKU', 'ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½eï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î‚ç‚­ï¿½ï¿½ï¿½Ô‚ï¿½uï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ç‚¨ï¿½è‚¢ï¿½vï¿½ï¿½ï¿½Ü‚ï¿½');
+define('S_RENZOKU2', 'ï¿½æ‘œï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½eï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î‚ç‚­ï¿½ï¿½ï¿½Ô‚ï¿½uï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ç‚¨ï¿½è‚¢ï¿½vï¿½ï¿½ï¿½Ü‚ï¿½');
+define('S_RENZOKU3', 'ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½eï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î‚ç‚­ï¿½ï¿½ï¿½Ô‚ï¿½uï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ç‚¨ï¿½è‚¢ï¿½vï¿½ï¿½ï¿½Ü‚ï¿½');
+define('S_DUPE', 'ï¿½Aï¿½bï¿½vï¿½ï¿½ï¿½[ï¿½hï¿½ÉŽï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½<br>ï¿½ï¿½ï¿½ï¿½ï¿½æ‘œï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½');
+define('S_NOTHREADERR', 'ï¿½Xï¿½ï¿½ï¿½bï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½');
+define('S_SCRCHANGE', 'ï¿½ï¿½Ê‚ï¿½Ø‚ï¿½Ö‚ï¿½ï¿½Ü‚ï¿½');
+define('S_BADDELPASS', 'ï¿½Yï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½Ôˆï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½');
+define('S_WRONGPASS', 'ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½á‚¢ï¿½Ü‚ï¿½');
+define('S_RETURNS', 'ï¿½fï¿½ï¿½ï¿½Â‚É–ß‚ï¿½');
+define('S_LOGUPD', 'ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Xï¿½Vï¿½ï¿½ï¿½ï¿½');
+define('S_MANAMODE', 'ï¿½Ç—ï¿½ï¿½ï¿½ï¿½[ï¿½h');
+define('S_MANAREPDEL', 'ï¿½Lï¿½ï¿½ï¿½íœ');
+define('S_MANAPOST', 'ï¿½Ç—ï¿½ï¿½lï¿½ï¿½ï¿½e');
+define('S_MANASUB', ' ï¿½Fï¿½ï¿½');
+define('S_DELLIST', 'ï¿½íœï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½Ìƒ`ï¿½Fï¿½bï¿½Nï¿½{ï¿½bï¿½Nï¿½Xï¿½Éƒ`ï¿½Fï¿½bï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½íœï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B');
+define('S_ITDELETES', 'ï¿½íœï¿½ï¿½ï¿½ï¿½');
+define('S_MDRESET', 'ï¿½ï¿½ï¿½Zï¿½bï¿½g');
+define('S_MDONLYPIC', 'ï¿½æ‘œï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
+define('S_MDTABLE1', '<th>ï¿½íœ</th><th>ï¿½Lï¿½ï¿½No</th><th>ï¿½ï¿½ï¿½eï¿½ï¿½</th><th>ï¿½è–¼</th>');
+define('S_MDTABLE2', '<th>ï¿½ï¿½ï¿½eï¿½ï¿½</th><th>ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½g</th><th>ï¿½zï¿½Xï¿½gï¿½ï¿½</th><th>ï¿½Yï¿½t<br>(Bytes)</th><th>md5</th>');
+define('S_RESET', 'ï¿½ï¿½ï¿½Zï¿½bï¿½g');
+define('S_IMGSPACEUSAGE', 'ï¿½y ï¿½æ‘œï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½v : <b>$all</b> KB ï¿½z');
+define('S_CANNOTWRITE', 'ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½gï¿½fï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½<br>');
+define('S_NOTWRITE', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½<br>');
+define('S_NOTREAD', 'ï¿½ï¿½Ç‚ß‚Ü‚ï¿½ï¿½ï¿½<br>');
+define('S_NOTDIR', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½<br>');
 
 /* begin MySQL specific section */
-define(S_SQLCONF, 'Ú‘±Ž¸”s');		//MySQL connection failure
-define(S_SQLDBSF, 'mysql_select_dbŽ¸”s<br>');	//database select failure
-define(S_TCREATE, 'ƒe[ƒuƒ‹‚ðì¬‚µ‚Ü‚·<br>\n');	//creating table
-define(S_TCREATEF, 'ƒe[ƒuƒ‹ì¬Ž¸”s<br>');		//table creation failed
-define(S_SQLFAIL, 'sqlŽ¸”s<br>');		//SQL Failure
+define('S_SQLCONF', 'ï¿½Ú‘ï¿½ï¿½ï¿½ï¿½s');		//MySQL connection failure
+define('S_SQLDBSF', 'mysql_select_dbï¿½ï¿½ï¿½s<br>');	//database select failure
+define('S_TCREATE', 'ï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½Ü‚ï¿½<br>\n');	//creating table
+define('S_TCREATEF', 'ï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½s<br>');		//table creation failed
+define('S_SQLFAIL', 'sqlï¿½ï¿½ï¿½s<br>');		//SQL Failure
 ?>
 

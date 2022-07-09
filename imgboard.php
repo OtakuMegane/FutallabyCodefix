@@ -1,4 +1,4 @@
-<?
+<?php
 # Futallaby 040103
 #
 # For setup instructions and latest version, please visit:
@@ -1011,7 +1011,7 @@ function valid($pass)
 function admindel($pass)
 {
     global $path, $onlyimgdel;
-    $delno = array(dummy);
+    $delno = array();
     $delflag = FALSE;
     reset($_POST);
     while ($item = each($_POST)) {
