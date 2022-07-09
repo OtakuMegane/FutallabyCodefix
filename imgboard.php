@@ -69,7 +69,10 @@ function updatelog($resno = 0)
     $find = false;
     $resno = (int) $resno;
     if ($resno) {
-        $result = mysql_call("select * from " . SQLLOG . " where root>0 and no=$resno");
+        // Codefix note:
+        // Checks on column root previously assumed a value of zero was valid
+        // It must have worked at one point but MySQL definitely doesn't accept it now, so epoch is a good enough substitute
+        $result = mysql_call("select * from " . SQLLOG . " where root>'1970-01-01' and no=$resno");
         if ($result) {
             $find = mysqli_fetch_row($result);
             mysqli_free_result($result);
@@ -79,11 +82,11 @@ function updatelog($resno = 0)
     }
     if ($resno) {
         if (!$treeline = mysql_call(
-            "select * from " . SQLLOG . " where root>0 and no=" . $resno . " order by root desc")) {
+            "select * from " . SQLLOG . " where root>'1970-01-01' and no=" . $resno . " order by root desc")) {
             echo S_SQLFAIL;
         }
     } else {
-        if (!$treeline = mysql_call("select * from " . SQLLOG . " where root>0 order by root desc")) {
+        if (!$treeline = mysql_call("select * from " . SQLLOG . " where root>'1970-01-01' order by root desc")) {
             echo S_SQLFAIL;
         }
     }
@@ -129,7 +132,7 @@ function updatelog($resno = 0)
             if ($email)
                 $name = "<a href=\"mailto:$email\">$name</a>";
                 $com = auto_link($com);
-                $com = eregi_replace("(^|>)(&gt;[^<]*)", "\\1<div class=\"unkfunc\">\\2</div>", $com);
+                $com = preg_replace("/(^|>)(&gt;[^<]*)/i", "\\1<div class=\"unkfunc\">\\2</div>", $com);
                 // Picture file name
                 $img = $path . $tim . $ext;
                 $src = IMG_DIR . $tim . $ext;
@@ -198,7 +201,7 @@ function updatelog($resno = 0)
                             $name = "<a href=\"mailto:$email\">$name</a>";
                             $com = auto_link($com);
                             // $com = eregi_replace("(^|>)(&gt;[^<]*)", "\\1<font color=".RE_COL.">\\2</font>", $com);
-                            $com = eregi_replace("(^|>)(&gt;[^<]*)", "\\1<div class=\"unkfunc\">\\2</div>", $com);
+                            preg_replace("/(^|>)(&gt;[^<]*)/i", "\\1<div class=\"unkfunc\">\\2</div>", $com);
                             // Main creation
                             $dat .= "<table><tr><td class=\"doubledash\">&gt;&gt;</td><td class=\"reply\">\n";
                             $dat .= "<input type=\"checkbox\" name=\"$no\" value=\"delete\" /><span class=\"replytitle\">$sub</span> \n";
@@ -297,6 +300,7 @@ function mysql_call($query)
     if (!$ret) {
         # echo "error!!<br />";
         echo $query . "<br />";
+        //echo mysqli_errno($mysqli_object).": ".mysqli_error($mysqli_object)."<br />";die();
         # echo mysql_errno().": ".mysql_error()."<br />";
     }
     return $ret;
@@ -417,7 +421,7 @@ function error($mes, $dest = '')
 /* Auto Linker */
 function auto_link($proto)
 {
-    $proto = ereg_replace("(https?|ftp|news)(://[[:alnum:]\+\$\;\?\.%,!#~*/:@&=_-]+)",
+    $proto = preg_replace("/(https?|ftp|news)(:\/\/[[:alnum:]\+\$\;\?\.%,!#~*\/:@&=_-]+)/",
         "<a href=\"\\1\\2\" target=\"_blank\">\\1\\2</a>", $proto);
     return $proto;
 }
@@ -455,7 +459,7 @@ function regist($name, $email, $sub, $com, $url, $pwd, $upfile, $upfile_name, $r
                 error(S_NOREC, $dest);
                 $md5 = md5_of_file($dest);
                 foreach ($badfile as $value) {
-                    if (ereg("^$value", $md5)) {
+                    if (preg_match("/^$value/", $md5)) {
                         error(S_SAMEPIC, $dest); // Refuse this image
                     }
                 }
@@ -540,10 +544,10 @@ function regist($name, $email, $sub, $com, $url, $pwd, $upfile, $upfile_name, $r
     $find = false;
     $resto = (int) $resto;
     if ($resto) {
-        if (!$result = mysql_call("select * from " . SQLLOG . " where root>0 and no=$resto")) {
+        if (!$result = mysql_call("select * from " . SQLLOG . " where root>'1970-01-01' and no=$resto")) {
             echo S_SQLFAIL;
         } else {
-            $find = mysql_fetch_row($result);
+            $find = mysqli_fetch_row($result);
             mysqli_free_result($result);
         }
         if (!$find)
@@ -551,7 +555,7 @@ function regist($name, $email, $sub, $com, $url, $pwd, $upfile, $upfile_name, $r
     }
 
     foreach ($badstring as $value) {
-        if (ereg($value, $com) || ereg($value, $sub) || ereg($value, $name) || ereg($value, $email)) {
+        if (preg_match('/' . $value . '/', $com) || preg_match('/' . $value . '/', $sub) || preg_match('/' . $value . '/', $name) || preg_match('/' . $value . '/', $email)) {
             error(S_STRREF, $dest);
         }
         ;
@@ -559,11 +563,11 @@ function regist($name, $email, $sub, $com, $url, $pwd, $upfile, $upfile_name, $r
     if ($_SERVER["REQUEST_METHOD"] != "POST")
         error(S_UNJUST, $dest);
         // Form content check
-        if (!$name || ereg("^[ |�@|]*$", $name))
+        if (!$name || preg_match("/^[ |�@|]*$/", $name))
             $name = "";
-            if (!$com || ereg("^[ |�@|\t]*$", $com))
+            if (!$com || preg_match("/^[ |�@|\t]*$/", $com))
                 $com = "";
-                if (!$sub || ereg("^[ |�@|]*$", $sub))
+                if (!$sub || preg_match("/^[ |�@|]*$/", $sub))
                     $sub = "";
 
                     if (!$resto && !$textonly && !is_file($dest))
@@ -571,8 +575,8 @@ function regist($name, $email, $sub, $com, $url, $pwd, $upfile, $upfile_name, $r
                         if (!$com && !is_file($dest))
                             error(S_NOTEXT, $dest);
 
-                            $name = ereg_replace(S_MANAGEMENT, "\"" . S_MANAGEMENT . "\"", $name);
-                            $name = ereg_replace(S_DELETION, "\"" . S_DELETION . "\"", $name);
+                            $name = preg_replace('/' . S_MANAGEMENT . '/', "\"" . S_MANAGEMENT . "\"", $name);
+                            $name = preg_replace('/' . S_DELETION . '/', "\"" . S_DELETION . "\"", $name);
 
                             if (strlen($com) > 1000)
                                 error(S_TOOLONG, $dest);
@@ -591,17 +595,17 @@ function regist($name, $email, $sub, $com, $url, $pwd, $upfile, $upfile_name, $r
                                                     $host = gethostbyaddr($_SERVER["REMOTE_ADDR"]);
 
                                                     foreach ($badip as $value) { // Refusal hosts
-                                                        if (eregi("$value$", $host)) {
+                                                        if (preg_match("/$value$/i", $host)) {
                                                             error(S_BADHOST, $dest);
                                                         }
                                                     }
-                                                    if (eregi("^mail", $host) || eregi("^ns", $host) || eregi("^dns", $host) || eregi("^ftp", $host) ||
-                                                        eregi("^prox", $host) || eregi("^pc", $host) || eregi("^[^\.]\.[^\.]$", $host)) {
+                                                    if (preg_match("/^mail/i", $host) || preg_match("/^ns/i", $host) || preg_match("/^dns/i", $host) || preg_match("/^ftp/i", $host) ||
+                                                        preg_match("/^prox/i", $host) || preg_match("/^pc/i", $host) || preg_match("/^[^\.]\.[^\.]$/i", $host)) {
                                                             $pxck = "on";
                                                         }
-                                                        if (eregi("ne\\.jp$", $host) || eregi("ad\\.jp$", $host) || eregi("bbtec\\.net$", $host) ||
-                                                            eregi("aol\\.com$", $host) || eregi("uu\\.net$", $host) || eregi("asahi-net\\.or\\.jp$", $host) ||
-                                                            eregi("rim\\.or\\.jp$", $host)) {
+                                                        if (preg_match("/ne\\.jp$/i", $host) || preg_match("/ad\\.jp$/i", $host) || preg_match("/bbtec\\.net$/i", $host) ||
+                                                            preg_match("/aol\\.com$/i", $host) || preg_match("/uu\\.net$/i", $host) || preg_match("/asahi-net\\.or\\.jp$/i", $host) ||
+                                                            preg_match("/rim\\.or\\.jp$/i", $host)) {
                                                                 $pxck = "off";
                                                             } else {
                                                                 $pxck = "on";
@@ -641,26 +645,26 @@ function regist($name, $email, $sub, $com, $url, $pwd, $upfile, $upfile_name, $r
                                                             }
                                                             // Text plastic surgery (rorororor)
                                                             $email = CleanStr($email);
-                                                            $email = ereg_replace("[\r\n]", "", $email);
+                                                            $email = preg_replace("/[\r\n]/", "", $email);
                                                             $sub = CleanStr($sub);
-                                                            $sub = ereg_replace("[\r\n]", "", $sub);
+                                                            $sub = preg_replace("/[\r\n]/", "", $sub);
                                                             $url = CleanStr($url);
-                                                            $url = ereg_replace("[\r\n]", "", $url);
+                                                            $url = preg_replace("/[\r\n]/", "", $url);
                                                             $resto = CleanStr($resto);
-                                                            $resto = ereg_replace("[\r\n]", "", $resto);
+                                                            $resto = preg_replace("/[\r\n]/", "", $resto);
                                                             $com = CleanStr($com);
                                                             // Standardize new character lines
                                                             $com = str_replace("\r\n", "\n", $com);
                                                             $com = str_replace("\r", "\n", $com);
                                                             // Continuous lines
-                                                            $com = ereg_replace("\n((!@| )*\n){3,}", "\n", $com);
+                                                            $com = preg_replace("/\n((!@| )*\n){3,}/", "\n", $com);
                                                             if (!BR_CHECK || substr_count($com, "\n") < BR_CHECK) {
                                                                 $com = nl2br($com); // br is substituted before newline char
                                                             }
                                                             $com = str_replace("\n", "", $com); // \n is erased
 
                                                             // $name=ereg_replace(TRIPKEY,"",$name); //erase tripkeys in name
-                                                            $name = ereg_replace("[\r\n]", "", $name);
+                                                            $name = preg_replace("/[\r\n]/", "", $name);
                                                             $names = $name;
                                                             $name = trim($name); // blankspace removal
                                                             if (get_magic_quotes_gpc()) { // magic quotes is deleted (?)
@@ -670,14 +674,14 @@ function regist($name, $email, $sub, $com, $url, $pwd, $upfile, $upfile_name, $r
                                                             $name = str_replace("&amp;", "&", $name); // remove ampersands
                                                             $name = str_replace(",", "&#44;", $name); // remove commas
 
-                                                            if (ereg("(#|!)(.*)", $names, $regs)) {
+                                                            if (preg_match("/(#|!)(.*)/", $names, $regs)) {
                                                                 $cap = $regs[2];
                                                                 $cap = strtr($cap, "&amp;", "&");
                                                                 $cap = strtr($cap, "&#44;", ",");
-                                                                $name = ereg_replace("(#|!)(.*)", "", $name);
+                                                                $name = preg_replace("/(#|!)(.*)/", "", $name);
                                                                 // $name=ereg_replace(TRIPKEY,"",$name); //erase tripkeys in name
                                                                 $salt = substr($cap . "H.", 1, 2);
-                                                                $salt = ereg_replace("[^\.-z]", ".", $salt);
+                                                                $salt = preg_replace("/[^\.-z]/", ".", $salt);
                                                                 $salt = strtr($salt, ":;<=>?@[\\]^_`", "ABCDEFGabcdef");
                                                                 $name .= TRIPKEY . substr(crypt($cap, $salt), -10) . "";
                                                             }
@@ -737,7 +741,8 @@ function regist($name, $email, $sub, $com, $url, $pwd, $upfile, $upfile_name, $r
 
                                                                                     $restoqu = (int) $resto;
                                                                                     if ($resto) { // res,root processing
-                                                                                        $rootqu = "0";
+                                                                                        $rootqu = "'" . date('Y-m-d H:i:s', 0) . "'";
+                                                                                        //$rootqu = "0";
                                                                                         if (!$resline = mysql_call("select * from " . SQLLOG . " where resto=" . $resto)) {
                                                                                             echo S_SQLFAIL;
                                                                                         }
@@ -769,7 +774,7 @@ function regist($name, $email, $sub, $com, $url, $pwd, $upfile, $upfile_name, $r
                                                                                     setcookie("pwdc", $c_pass, time() + 7 * 24 * 3600); /* 1 week cookie expiration */
                                                                                     if (function_exists("mb_internal_encoding") && function_exists("mb_convert_encoding") && function_exists(
                                                                                         "mb_substr")) {
-                                                                                        if (ereg("MSIE|Opera", $_SERVER["HTTP_USER_AGENT"])) {
+                                                                                        if (preg_match("/MSIE|Opera/", $_SERVER["HTTP_USER_AGENT"])) {
                                                                                             $i = 0;
                                                                                             $c_name = '';
                                                                                             mb_internal_encoding("SJIS");
@@ -1014,12 +1019,22 @@ function admindel($pass)
     $delno = array();
     $delflag = FALSE;
     reset($_POST);
-    while ($item = each($_POST)) {
+
+    // Codefix note:
+    // each() is deprecated/removed and doesn't seem to be used for anything foreach can't handle
+    foreach($_POST as $key => $value) {
+        if ($value == 'delete') {
+            array_push($delno, $key);
+            $delflag = TRUE;
+        }
+    }
+
+    /*while ($item = each($_POST)) {
         if ($item[1] == 'delete') {
             array_push($delno, $item[0]);
             $delflag = TRUE;
         }
-    }
+    }*/
     if ($delflag) {
         if (!$result = mysql_call("select * from " . SQLLOG . "")) {
             echo S_SQLFAIL;
@@ -1027,7 +1042,7 @@ function admindel($pass)
         $find = FALSE;
         while ($row = mysqli_fetch_row($result)) {
             list ($no, $now, $name, $email, $sub, $com, $host, $pwd, $ext, $w, $h, $tim, $time, $md5, $fsize,) = $row;
-            if ($onlyimgdel == on) {
+            if ($onlyimgdel == 'on') {
                 if (array_search($no, $delno)) { // only a picture is deleted
                     $delfile = $path . $tim . $ext; // only a picture is deleted
                     if (is_file($delfile))
@@ -1066,7 +1081,7 @@ function admindel($pass)
     echo S_MDTABLE2;
     echo "</tr>\n";
 
-    if (!$result = mysqli_call("select * from " . SQLLOG . " order by no desc")) {
+    if (!$result = mysql_call("select * from " . SQLLOG . " order by no desc")) {
         echo S_SQLFAIL;
     }
     $j = 0;
@@ -1075,8 +1090,8 @@ function admindel($pass)
         $img_flag = FALSE;
         list ($no, $now, $name, $email, $sub, $com, $host, $pwd, $ext, $w, $h, $tim, $time, $md5, $fsize, $root, $resto) = $row;
         // Format
-        $now = ereg_replace('.{2}/(.*)$', '\1', $now);
-        $now = ereg_replace('\(.*\)', ' ', $now);
+        $now = preg_replace('/.{2}\/(.*)$/', '\1', $now);
+        $now = preg_replace('/\(.*\)/', ' ', $now);
         if (strlen($name) > 10)
             $name = substr($name, 0, 9) . ".";
             if (strlen($sub) > 10)
