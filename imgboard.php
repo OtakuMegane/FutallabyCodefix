@@ -9,6 +9,12 @@
 # Codefix by OtakuMegane
 # https://github.com/OtakuMegane
 
+// Codefix notable changes:
+// Changed short opening tags to full tag (<?php)
+// Convert from mysql extension to mysqli
+// Change ereg functions to preg equivalents
+// Proper string quoting in define functions
+
 // Codefix note:
 // The structure of the script and files creates a lot of undefined notices but it works fine so we mute them
 error_reporting(E_ALL & ~E_NOTICE);
@@ -969,14 +975,13 @@ function usrdel($no, $pwd)
             $delflag = TRUE;
         }
     }
-    /*
-     * while ($item = each($_POST)) {
-     * if ($item[1] == 'delete') {
-     * array_push($delno, $item[0]);
-     * $delflag = TRUE;
-     * }
-     * }
-     */
+    /*while ($item = each($_POST)) {
+        if ($item[1] == 'delete') {
+            array_push($delno, $item[0]);
+            $delflag = TRUE;
+        }
+     }*/
+
     if ($pwd == "" && $pwdc != "")
         $pwd = $pwdc;
     $countdel = count($delno);
@@ -1049,14 +1054,14 @@ function admindel($pass)
             $delflag = TRUE;
         }
     }
-    /*
-     * while ($item = each($_POST)) {
-     * if ($item[1] == 'delete') {
-     * array_push($delno, $item[0]);
-     * $delflag = TRUE;
-     * }
-     * }
-     */
+
+    /*while ($item = each($_POST)) {
+        if ($item[1] == 'delete') {
+            array_push($delno, $item[0]);
+            $delflag = TRUE;
+        }
+    }*/
+
     if ($delflag) {
         if (!$result = mysql_call("select * from " . SQLLOG . "")) {
             echo S_SQLFAIL;
